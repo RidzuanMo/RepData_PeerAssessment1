@@ -1,14 +1,10 @@
----
-title: "Reproducible Research: Peer Assessment 1"
-output: 
-  html_document:
-    keep_md: true
----
+# Reproducible Research: Peer Assessment 1
 
 
 ## Loading and preprocessing the data
 
-```{r}
+
+```r
 activity <- read.csv('activity.csv')
 ```
 
@@ -16,14 +12,18 @@ activity <- read.csv('activity.csv')
 ## What is mean total number of steps taken per day?
 
 1. Calculate the total number of steps taken per day
-```{r}
+
+```r
 step_date <- with(activity, tapply(steps, date, sum, na.rm=TRUE))
 ```
 
 2. Plot a histogram of the total number of steps taken each day
-```{r}
+
+```r
 hist(step_date, main="Steps per day", xlab="Steps")
 ```
+
+![](PA1_template_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
 
 ## What is the average daily activity pattern?
 
