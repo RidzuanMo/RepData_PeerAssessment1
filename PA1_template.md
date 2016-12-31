@@ -20,7 +20,7 @@ ds <- with(activity, aggregate(steps ~ date, data=activity, sum))
 2. Plot a histogram of the total number of steps taken each day
 
 ```r
-hist(ds$steps, main="Steps per day", xlab="Steps")
+hist(ds$steps, main="Histogram of steps", xlab="Steps in days")
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
@@ -128,7 +128,7 @@ head(activity_wo_na)
 
 ```r
 ds <- aggregate(steps ~ date, data=activity_wo_na, sum)
-hist(ds$steps)
+hist(ds$steps, main="Histogram of Steps", xlab="Step in Minutes")
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
@@ -145,6 +145,10 @@ c(mean=mean(ds$steps), median=median(ds$steps))
 ```
 
 Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?
+
+```{}
+Yes, the values is differ but it is seem very low and it will not give a big impact on the data analysis.
+```
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
@@ -190,8 +194,11 @@ ds <- summarize(activity_wo_na, mean(steps))
 colnames(ds) <- c("interval", "day", "steps")
 
 ## plot graph and split it by day("weekday" and "weekend")
-gp <- ggplot(ds, aes(x=interval, y=steps)) + geom_line()
-gp + facet_grid(day ~ .)
+gp <- ggplot(ds, aes(x=interval, y=steps)) + geom_line() + 
+    facet_grid(day ~ .) + 
+    xlab("Interval (5 minutes)") + 
+    ggtitle("Time series Weekday vs Weekend")
+gp
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-13-1.png)<!-- -->
